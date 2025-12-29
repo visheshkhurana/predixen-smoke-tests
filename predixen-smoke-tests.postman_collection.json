@@ -1,0 +1,507 @@
+{
+  "info": {
+    "name": "Predixen Smoke Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "https://predixen-nikita.replit.app" },
+    { "key": "company_id", "value": "" },
+    { "key": "scenario_id", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Demo Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/demo-login",
+          "host": ["{{base_url}}"],
+          "path": ["api", "demo-login"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Demo login status 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth Me",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/api/auth/me",
+          "host": ["{{base_url}}"],
+          "path": ["api", "auth", "me"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Auth me status 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Current Company",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/api/company/current",
+          "host": ["{{base_url}}"],
+          "path": ["api", "company", "current"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Current company status 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "List Companies",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/api/companies",
+          "host": ["{{base_url}}"],
+          "path": ["api", "companies"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('List companies status 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create Company",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/company",
+          "host": ["{{base_url}}"],
+          "path": ["api", "company"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\\n  \\\"name\\\": \\\"SmokeTest Co\\\",\\n  \\\"stage\\\": \\\"Seed\\\",\\n  \\\"sector\\\": \\\"Technology\\\",\\n  \\\"currentCash\\\": 1000000,\\n  \\\"monthlyBurn\\\": 50000,\\n  \\\"currentARR\\\": 250000,\\n  \\\"grossMarginPct\\\": 70,\\n  \\\"cac\\\": 2000,\\n  \\\"ltv\\\": 12000,\\n  \\\"hqLocation\\\": \\\"Dubai\\\",\\n  \\\"businessDescription\\\": \\\"Smoke suite test company\\\",\\n  \\\"onboardingCompleted\\\": 1\\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Create company status 201', function () { pm.response.to.have.status(201); });",
+              "var json = pm.response.json();",
+              "pm.environment.set('company_id', json.id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Activate Company",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/companies/{{company_id}}/activate",
+          "host": ["{{base_url}}"],
+          "path": ["api", "companies", "{{company_id}}", "activate"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Activate company status 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Delete Company",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{base_url}}/api/companies/{{company_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "companies", "{{company_id}}"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Delete company status', function () { pm.expect([200,204]).to.include(pm.response.code); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create Scenario",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/scenarios",
+          "host": ["{{base_url}}"],
+          "path": ["api", "scenarios"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\\n  \\\"name\\\": \\\"Smoke Scenario\\\",\\n  \\\"description\\\": \\\"Created by Postman smoke suite\\\",\\n  \\\"timeHorizonMonths\\\": 24,\\n  \\\"baselineStartCash\\\": 2000000,\\n  \\\"baselineMonthlyBurn\\\": 120000,\\n  \\\"baselineGrowthMinPct\\\": 3,\\n  \\\"baselineGrowthMaxPct\\\": 8,\\n  \\\"baselineGMMinPct\\\": 60,\\n  \\\"baselineGMMaxPct\\\": 75\\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Create scenario status 201', function () { pm.response.to.have.status(201); });",
+              "var json = pm.response.json();",
+              "pm.environment.set('scenario_id', json.id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "List Scenarios",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/api/scenarios",
+          "host": ["{{base_url}}"],
+          "path": ["api", "scenarios"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('List scenarios status 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Add Initiative",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/scenarios/{{scenario_id}}/initiatives",
+          "host": ["{{base_url}}"],
+          "path": ["api", "scenarios", "{{scenario_id}}", "initiatives"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\\n  \\\"name\\\": \\\"Improve Paid Acquisition\\\",\\n  \\\"initiativeType\\\": \\\"growth\\\",\\n  \\\"investmentType\\\": \\\"opex\\\",\\n  \\\"investmentAmount\\\": 150000,\\n  \\\"startMonthOffset\\\": 1,\\n  \\\"durationMonths\\\": 6,\\n  \\\"revGrowthMinPct\\\": 2,\\n  \\\"revGrowthMaxPct\\\": 6,\\n  \\\"cacChangeMinPct\\\": -5,\\n  \\\"cacChangeMaxPct\\\": -15,\\n  \\\"gmChangeMinPct\\\": 0,\\n  \\\"gmChangeMaxPct\\\": 2\\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Add initiative status 201', function () { pm.response.to.have.status(201); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Run Simulation",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/scenarios/{{scenario_id}}/simulate",
+          "host": ["{{base_url}}"],
+          "path": ["api", "scenarios", "{{scenario_id}}", "simulate"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Run simulation status 201', function () { pm.response.to.have.status(201); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Recent Simulation Runs",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/api/simulation-runs/recent",
+          "host": ["{{base_url}}"],
+          "path": ["api", "simulation-runs", "recent"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Recent simulation runs status 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CFO Budget Variance",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/cfo/analyze/budget-variance",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cfo", "analyze", "budget-variance"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Budget variance status 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CFO Working Capital",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/cfo/analyze/working-capital",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cfo", "analyze", "working-capital"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Working capital status 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CFO Gross Margin",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/cfo/analyze/gross-margin",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cfo", "analyze", "gross-margin"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Gross margin status 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CFO ROIC Playbook",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/cfo/playbook/roic",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cfo", "playbook", "roic"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('ROIC playbook status 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CFO Liquidity Stress",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/cfo/stress/liquidity",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cfo", "stress", "liquidity"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Liquidity stress status 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CFO Cashflow Forecast",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/cfo/forecast/cashflow",
+          "host": ["{{base_url}}"],
+          "path": ["api", "cfo", "forecast", "cashflow"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Cashflow forecast status 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Logout",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/logout",
+          "host": ["{{base_url}}"],
+          "path": ["api", "logout"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Logout status 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
