@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "request_id",
+    "decision_context",
+    "proposed_action"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string"
+    },
+    "decision_context": {
+      "type": "object"
+    },
+    "proposed_action": {
+      "type": "object"
+    },
+    "financial_impact": {
+      "type": "object"
+    },
+    "reversibility": {
+      "type": "boolean"
+    }
+  }
+}
