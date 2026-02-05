@@ -1,0 +1,98 @@
+{
+  "company": "Predixen.app",
+  "version": "1.0.0",
+  "agents": [
+    {
+      "id": "CEO_AGENT",
+      "role": "Chief Executive Officer",
+      "domain": "cross-domain",
+      "type": "executive",
+      "n8n_workflow": "WF-008",
+      "can_approve": false,
+      "can_merge": false
+    },
+    {
+      "id": "CHIEF_OF_STAFF_AGENT",
+      "role": "Chief of Staff",
+      "domain": "routing",
+      "type": "executive",
+      "n8n_workflow": "WF-002",
+      "can_approve": false,
+      "can_merge": false
+    },
+    {
+      "id": "CFO_AGENT",
+      "role": "Chief Financial Officer",
+      "domain": "finance",
+      "type": "executive",
+      "n8n_workflow": "WF-003",
+      "can_approve": false,
+      "can_merge": false
+    },
+    {
+      "id": "CRO_AGENT",
+      "role": "Chief Revenue Officer",
+      "domain": "revenue",
+      "type": "executive",
+      "n8n_workflow": "WF-004",
+      "can_approve": false,
+      "can_merge": false
+    },
+    {
+      "id": "CPO_AGENT",
+      "role": "Chief Product Officer",
+      "domain": "product",
+      "type": "executive",
+      "n8n_workflow": "WF-005",
+      "can_approve": false,
+      "can_merge": false
+    },
+    {
+      "id": "CTO_AGENT",
+      "role": "Chief Technology Officer",
+      "domain": "technology",
+      "type": "executive",
+      "n8n_workflow": "WF-006",
+      "can_approve": false,
+      "can_merge": false
+    },
+    {
+      "id": "RISK_AGENT",
+      "role": "Risk Officer",
+      "domain": "risk",
+      "type": "executive",
+      "n8n_workflow": "WF-007",
+      "can_approve": false,
+      "can_merge": false
+    },
+    {
+      "id": "DEV_AGENT",
+      "role": "AI Developer",
+      "domain": "engineering",
+      "type": "worker",
+      "n8n_workflow": "WF-013",
+      "can_approve": false,
+      "can_merge": false
+    },
+    {
+      "id": "QA_AGENT",
+      "role": "QA Engineer",
+      "domain": "quality",
+      "type": "worker",
+      "n8n_workflow": "WF-014",
+      "can_approve": false,
+      "can_merge": false
+    }
+  ],
+  "governance": {
+    "founder": "Vishesh Khurana",
+    "autonomy_levels": [
+      "manual",
+      "assisted",
+      "autonomous"
+    ],
+    "current_autonomy": "assisted",
+    "merge_requires_founder": true,
+    "high_risk_requires_founder": true
+  }
+}
