@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "request_id",
+    "analysis_type",
+    "revenue_data"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string"
+    },
+    "analysis_type": {
+      "type": "string",
+      "enum": [
+        "growth_analysis",
+        "churn_analysis",
+        "pricing_strategy",
+        "market_expansion"
+      ]
+    },
+    "revenue_data": {
+      "type": "object"
+    },
+    "market_context": {
+      "type": "object"
+    }
+  }
+}
