@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "request_id",
+    "review_type"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string"
+    },
+    "review_type": {
+      "type": "string",
+      "enum": [
+        "architecture_review",
+        "code_review",
+        "security_audit",
+        "infra_decision"
+      ]
+    },
+    "code_diff": {
+      "type": "string"
+    },
+    "architecture_proposal": {
+      "type": "object"
+    },
+    "security_context": {
+      "type": "object"
+    }
+  }
+}
