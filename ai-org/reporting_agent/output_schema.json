@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "report_id",
+    "report_type",
+    "generated_at",
+    "sections"
+  ],
+  "properties": {
+    "report_id": {
+      "type": "string"
+    },
+    "report_type": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 500
+    }
+  }
+}
