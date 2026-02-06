@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "request_id",
+    "request_text",
+    "source"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string"
+    },
+    "request_text": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "urgency": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "metadata": {
+      "type": "object"
+    }
+  }
+}
