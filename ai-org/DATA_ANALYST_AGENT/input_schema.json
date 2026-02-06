@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "task_id",
+    "description",
+    "target_files",
+    "files_content"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "target_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "files_content": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "simulation_specs": {
+      "type": "object"
+    }
+  }
+}
