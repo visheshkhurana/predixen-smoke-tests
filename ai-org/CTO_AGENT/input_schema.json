@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "sprint_id",
+    "sprint_goal",
+    "file_list",
+    "codebase_summary"
+  ],
+  "properties": {
+    "sprint_id": {
+      "type": "string",
+      "pattern": "^SPR-[0-9]{3}$"
+    },
+    "sprint_goal": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "file_list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "codebase_summary": {
+      "type": "object",
+      "properties": {
+        "total_files": {
+          "type": "integer"
+        },
+        "key_modules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recent_changes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
