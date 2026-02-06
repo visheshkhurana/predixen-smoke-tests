@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "report_id",
+    "report_type",
+    "data_sources"
+  ],
+  "properties": {
+    "report_id": {
+      "type": "string"
+    },
+    "report_type": {
+      "type": "string",
+      "enum": [
+        "daily_summary",
+        "decision_report",
+        "health_report",
+        "audit_report"
+      ]
+    },
+    "data_sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "time_range": {
+      "type": "object"
+    }
+  }
+}
