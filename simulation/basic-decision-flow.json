@@ -1,0 +1,34 @@
+{
+  "test_name": "basic_decision_flow",
+  "description": "End-to-end test of a business decision through the full agent pipeline",
+  "webhook_url": "/webhook/api/decision",
+  "method": "POST",
+  "payload": {
+    "request_id": "test-001",
+    "request_text": "Should we increase marketing spend by 20% for Q3?",
+    "source": "simulation",
+    "urgency": "medium",
+    "metadata": {
+      "current_budget": 50000,
+      "proposed_increase": 10000,
+      "expected_roi": 1.5,
+      "time_horizon": "quarterly"
+    }
+  },
+  "expected_behavior": {
+    "chief_of_staff_routes_to": [
+      "CFO_AGENT",
+      "CRO_AGENT"
+    ],
+    "risk_level_expected": "MEDIUM",
+    "requires_founder_approval": false,
+    "ceo_should_select_from_options": true
+  },
+  "assertions": [
+    "response.decision_id exists",
+    "response.selected_option_id exists",
+    "response.risk_level in [LOW, MEDIUM, HIGH, CRITICAL]",
+    "response.rationale is non-empty string",
+    "all numbers in response match input data"
+  ]
+}
