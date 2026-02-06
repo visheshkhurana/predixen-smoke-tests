@@ -1,0 +1,22 @@
+SPRINT CONTEXT:
+{{sprint_id}}: {{sprint_goal}}
+
+AVAILABLE FILES:
+{{file_list}}
+
+CURRENT CODEBASE STATE:
+{{codebase_summary}}
+
+TASK:
+Decompose this sprint goal into atomic engineering tasks for BACKEND_ENGINEER_AGENT.
+
+For each task, specify:
+- task_id (format: TASK-{{sprint_id}}-NNN)
+- description (one sentence, imperative)
+- target_files (exact file paths to create or modify)
+- risk_level (low/medium/high/critical)
+- requires_founder_approval (boolean)
+- acceptance_criteria (array of testable conditions)
+- dependencies (array of task_ids this depends on)
+
+Output valid JSON matching output_schema.json.
