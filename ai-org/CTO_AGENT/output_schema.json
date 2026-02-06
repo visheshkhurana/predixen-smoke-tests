@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "sprint_id",
+    "plan_id",
+    "tasks",
+    "execution_order"
+  ],
+  "properties": {
+    "sprint_id": {
+      "type": "string"
+    },
+    "plan_id": {
+      "type": "string",
+      "pattern": "^PLAN-[A-Z0-9]+$"
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "task_id",
+          "description",
+          "target_files",
+          "risk_level",
+          "requires_founder_approval",
+          "acceptance_criteria"
+        ],
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "pattern": "^TASK-SPR-[0-9]{3}-[0-9]{3}$"
+          },
+          "description": {
+            "type": "string"
+          },
+          "target_files": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "risk_level": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          },
+          "requires_founder_approval": {
+            "type": "boolean"
+          },
+          "acceptance_criteria": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "execution_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "estimated_total_minutes": {
+      "type": "integer"
+    }
+  }
+}
