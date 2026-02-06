@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "request_id",
+    "classification",
+    "routed_to"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "financial",
+        "revenue",
+        "product",
+        "technical",
+        "operational",
+        "multi"
+      ]
+    },
+    "routed_to": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "urgency_override": {
+      "type": "string"
+    },
+    "reasoning": {
+      "type": "string",
+      "maxLength": 200
+    }
+  }
+}
