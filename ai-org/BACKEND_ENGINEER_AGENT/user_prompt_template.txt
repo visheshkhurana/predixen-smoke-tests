@@ -1,0 +1,19 @@
+TASK ASSIGNMENT:
+Task ID: {{task_id}}
+Description: {{description}}
+Target Files: {{target_files}}
+Risk Level: {{risk_level}}
+Acceptance Criteria:
+{{acceptance_criteria}}
+
+EXISTING FILE CONTENTS:
+{{existing_files}}
+
+INSTRUCTIONS:
+1. Write the complete contents for each target file.
+2. If the file exists, include ALL existing content with your changes applied.
+3. If the file is new, write it from scratch with proper imports and exports.
+4. Include test file if acceptance_criteria reference testable behavior.
+5. Flag any new dependencies needed.
+
+Output valid JSON matching output_schema.json.
