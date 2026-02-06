@@ -1,0 +1,23 @@
+CODE REVIEW REQUEST:
+Task ID: {{task_id}}
+Description: {{description}}
+Risk Level: {{risk_level}}
+Target Files: {{target_files}}
+Acceptance Criteria:
+{{acceptance_criteria}}
+
+CODE TO REVIEW:
+{{files_content}}
+
+TEST FILES:
+{{test_files_content}}
+
+INSTRUCTIONS:
+1. Review each file for correctness, security, and style.
+2. Check all acceptance criteria are met.
+3. Check for blocked file violations.
+4. Check for unscoped changes.
+5. Provide verdict: PASS, FAIL, or NEEDS_CHANGES.
+6. For each finding, specify: severity, file, line (if applicable), description, recommendation.
+
+Output valid JSON matching output_schema.json.
