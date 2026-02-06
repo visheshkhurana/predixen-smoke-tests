@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "validation_id",
+    "data",
+    "schema_ref"
+  ],
+  "properties": {
+    "validation_id": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object"
+    },
+    "schema_ref": {
+      "type": "string"
+    }
+  }
+}
