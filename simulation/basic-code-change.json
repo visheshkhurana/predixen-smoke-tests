@@ -1,0 +1,34 @@
+{
+  "test_name": "basic_code_change",
+  "description": "Test the code review pipeline with a simple feature addition",
+  "webhook_url": "/webhook/code-pipeline",
+  "method": "POST",
+  "payload": {
+    "task_id": "task-test-001",
+    "task_description": "Add a new utility function to format dates in ISO 8601",
+    "target_files": [
+      "server/utils/date-formatter.ts"
+    ],
+    "constraints": [
+      "Must include unit tests",
+      "Must handle invalid inputs"
+    ],
+    "context": {
+      "project": "predixen-app",
+      "language": "typescript"
+    }
+  },
+  "expected_behavior": {
+    "dev_agent_generates_code": true,
+    "dev_agent_includes_tests": true,
+    "qa_agent_reviews": true,
+    "blocked_files_check": "no blocked files in target",
+    "cto_reviews_if_qa_passes": true
+  },
+  "assertions": [
+    "response.changes is non-empty array",
+    "response.tests_included is true",
+    "response.blocked_file_attempts is empty",
+    "response.qa_verdict in [PASS, FAIL, NEEDS_CHANGES]"
+  ]
+}
